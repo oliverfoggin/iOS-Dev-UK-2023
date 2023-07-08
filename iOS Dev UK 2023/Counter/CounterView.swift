@@ -17,8 +17,9 @@ struct CounterView: View {
 	var body: some View {
 		NavigationStack {
 			WithViewStore(
-				store.scope(state: { $0 }, action: CounterCore.Action.view),
-				observe: ViewState.init
+				store,
+				observe: ViewState.init,
+				send: CounterCore.Action.view
 			) { viewStore in
 				VStack {
 					Button {
@@ -61,8 +62,27 @@ struct CounterView: View {
 					}
 					.buttonStyle(.borderedProminent)
 				}
+				.toolbar {
+					ToolbarItem(placement: .navigationBarTrailing) {
+						Button {
+							viewStore.send(.favouriteToolBarItemTapped)
+						} label: {
+							Text("Favourites")
+						}
+					}
+				}
 			}
-			.alert(store: store.scope(state: \.$alert, action: CounterCore.Action.alert))
+			.alert(
+				store: store.scope(state: \.$destination, action: CounterCore.Action.destination),
+				state: /CounterCore.State.Destination.alert,
+				action: CounterCore.Action.Destination.alert
+			)
+			.navigationDestination(
+				store: store.scope(state: \.$destination, action: CounterCore.Action.destination),
+				state: /CounterCore.State.Destination.favourites,
+				action: CounterCore.Action.Destination.favourites,
+				destination: FavouritesView.init
+			)
 			.navigationTitle("Counter")
 		}
 	}

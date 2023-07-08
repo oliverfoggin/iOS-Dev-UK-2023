@@ -32,7 +32,7 @@ final class CounterTests: XCTestCase {
 		await store.send(.view(.numberFactButtonTapped))
 
 		await store.receive(.factClientResponse(.success(testFact))) {
-			$0.alert = .init(title: TextState(testFact))
+			$0.destination = .alert(.init(title: TextState(testFact)))
 		}
 	}
 
@@ -47,7 +47,7 @@ final class CounterTests: XCTestCase {
 		await store.send(.view(.numberFactButtonTapped))
 
 		await store.receive(.factClientResponse(.failure(URLError(.badURL)))) {
-			$0.alert = .init(title: TextState("The operation couldn’t be completed. (NSURLErrorDomain error -1000.)"))
+			$0.destination = .alert(.init(title: TextState("The operation couldn’t be completed. (NSURLErrorDomain error -1000.)")))
 		}
 	}
 }

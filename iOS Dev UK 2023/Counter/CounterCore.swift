@@ -2,9 +2,14 @@ import ComposableArchitecture
 
 struct CounterCore: Reducer {
 	struct State: Equatable {
+		enum Destination: Equatable {
+			case alert(AlertState<Action.Alert>)
+			case favourites(FavouritesCore.State)
+		}
+
 		var count: Int
 
-		@PresentationState var alert: AlertState<Action.Alert>?
+		@PresentationState var destination: Destination?
 
 		var isFavrouite: Bool {
 			@Dependency(\.favourites) var favourites
@@ -19,9 +24,14 @@ struct CounterCore: Reducer {
 
 	enum Action: Equatable {
 		case view(ViewAction)
-		case alert(PresentationAction<Alert>)
+		case destination(PresentationAction<Destination>)
 
 		case factClientResponse(TaskResult<String>)
+
+		enum Destination: Equatable {
+			case alert(Alert)
+			case favourites(FavouritesCore.Action)
+		}
 
 		enum Alert: Equatable {}
 
@@ -30,6 +40,7 @@ struct CounterCore: Reducer {
 			case decrementButtonTapped
 			case numberFactButtonTapped
 			case favouriteButtonTapped
+			case favouriteToolBarItemTapped
 		}
 	}
 
@@ -64,18 +75,34 @@ struct CounterCore: Reducer {
 				}
 				return .none
 
+			case .view(.favouriteToolBarItemTapped):
+				state.destination = .favourites(.init())
+				return .none
+
 			case .factClientResponse(.success(let fact)):
-				state.alert = AlertState { TextState(fact) }
+				state.destination = .alert(AlertState { TextState(fact) })
 				return .none
 
 			case .factClientResponse(.failure(let error)):
-				state.alert = AlertState { TextState(error.localizedDescription) }
+				state.destination = .alert(AlertState { TextState(error.localizedDescription) })
 				return .none
 
-			case .alert:
+			case .destination(.presented(.favourites(.delegate(.showFavourite(let favourite))))):
+				state.count = favourite
+				state.destination = nil
+				return .none
+
+			case .destination:
 				return .none
 			}
 		}
-		.ifLet(\.$alert, action: /Action.alert)
+		.ifLet(\.$destination, action: /Action.destination) {
+			Scope(state: /State.Destination.alert, action: /Action.Destination.alert) {
+				EmptyReducer()
+			}
+			Scope(state: /State.Destination.favourites, action: /Action.Destination.favourites) {
+				FavouritesCore()
+			}
+		}
 	}
 }

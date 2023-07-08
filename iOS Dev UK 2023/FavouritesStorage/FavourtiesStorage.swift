@@ -4,6 +4,7 @@ struct Favourites {
 	var addFavourite: (Int) -> Void
 	var removeFavourite: (Int) -> Void
 	var isFavourite: (Int) -> Bool
+	var sortedFavourites: () -> [Int]
 }
 
 extension DependencyValues {
@@ -23,7 +24,8 @@ extension Favourites {
 		.init(
 			addFavourite: XCTUnimplemented("\(self.self).addFavourite"),
 			removeFavourite: XCTUnimplemented("\(self.self).removeFavourite"),
-			isFavourite: XCTUnimplemented("\(self.self).isFavourite")
+			isFavourite: XCTUnimplemented("\(self.self).isFavourite"),
+			sortedFavourites: XCTUnimplemented("\(self.self).sortedFavourites")
 		)
 	}
 }
@@ -42,6 +44,10 @@ class FavouritesStorage {
 	func isFavourite(value: Int) -> Bool {
 		favourites.contains(value)
 	}
+
+	func sortedFavourites() -> [Int] {
+		favourites.sorted(by: <)
+	}
 }
 
 extension Favourites {
@@ -49,9 +55,10 @@ extension Favourites {
 		let storage = FavouritesStorage()
 
 		return .init(
-			addFavourite: storage.add(favourite:),
-			removeFavourite: storage.remove(favourite:),
-			isFavourite: storage.isFavourite(value:)
+			addFavourite: storage.add,
+			removeFavourite: storage.remove,
+			isFavourite: storage.isFavourite,
+			sortedFavourites: storage.sortedFavourites
 		)
 	}
 }
