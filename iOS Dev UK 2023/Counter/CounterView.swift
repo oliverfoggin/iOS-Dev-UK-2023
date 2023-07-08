@@ -8,7 +8,7 @@ struct CounterView: View {
 
 		init(state: CounterCore.State) {
 			count = state.count
-			isFavourite = state.isFavrouite
+			isFavourite = state.isFavourite
 		}
 	}
 
@@ -61,6 +61,9 @@ struct CounterView: View {
 						Text("Get number fact")
 					}
 					.buttonStyle(.borderedProminent)
+				}
+				.onAppear {
+					viewStore.send(.onAppear)
 				}
 				.toolbar {
 					ToolbarItem(placement: .navigationBarTrailing) {

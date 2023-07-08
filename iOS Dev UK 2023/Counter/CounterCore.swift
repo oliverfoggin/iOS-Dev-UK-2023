@@ -11,14 +11,11 @@ struct CounterCore: Reducer {
 
 		@PresentationState var destination: Destination?
 
-		var isFavrouite: Bool {
-			@Dependency(\.favourites) var favourites
+		var isFavourite: Bool
 
-			return favourites.isFavourite(count)
-		}
-
-		init(count: Int = 0) {
+		init(count: Int = 0, isFavourite: Bool = false) {
 			self.count = count
+			self.isFavourite = isFavourite
 		}
 	}
 
@@ -36,6 +33,7 @@ struct CounterCore: Reducer {
 		enum Alert: Equatable {}
 
 		enum ViewAction: Equatable {
+			case onAppear
 			case incrementButtonTapped
 			case decrementButtonTapped
 			case numberFactButtonTapped
@@ -47,15 +45,24 @@ struct CounterCore: Reducer {
 	@Dependency(\.factClient) var factClient
 	@Dependency(\.favourites) var favourites
 
+	private func updateCount(state: inout State, to count: Int) {
+		state.count = count
+		state.isFavourite = favourites.isFavourite(state.count)
+	}
+
 	var body: some ReducerOf<Self> {
 		Reduce<State, Action> { state, action in
 			switch action {
+			case .view(.onAppear):
+				state.isFavourite = favourites.isFavourite(state.count)
+				return .none
+
 			case .view(.incrementButtonTapped):
-				state.count += 1
+				updateCount(state: &state, to: state.count + 1)
 				return .none
 
 			case .view(.decrementButtonTapped):
-				state.count -= 1
+				updateCount(state: &state, to: state.count - 1)
 				return .none
 
 			case .view(.numberFactButtonTapped):
@@ -73,6 +80,7 @@ struct CounterCore: Reducer {
 				} else {
 					favourites.addFavourite(state.count)
 				}
+				state.isFavourite = favourites.isFavourite(state.count)
 				return .none
 
 			case .view(.favouriteToolBarItemTapped):
@@ -88,7 +96,7 @@ struct CounterCore: Reducer {
 				return .none
 
 			case .destination(.presented(.favourites(.delegate(.showFavourite(let favourite))))):
-				state.count = favourite
+				updateCount(state: &state, to: favourite)
 				state.destination = nil
 				return .none
 

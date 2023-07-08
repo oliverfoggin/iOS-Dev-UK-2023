@@ -40,7 +40,6 @@ extension NumberFactClient {
 	}
 }
 
-
 #if DEBUG
 extension NumberFactClient {
 	mutating func overrideGetFact(for expectedCount: Int, with response: @escaping () async throws -> String) {

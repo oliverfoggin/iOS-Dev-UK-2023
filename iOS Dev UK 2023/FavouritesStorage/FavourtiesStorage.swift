@@ -62,3 +62,38 @@ extension Favourites {
 		)
 	}
 }
+
+#if DEBUG
+extension Favourites {
+	mutating func expectAddFavourite(_ expectedValue: Int) {
+		let fulfill = expectation(description: "Add Favourite: \(expectedValue)")
+		self.addFavourite = { [self] value in
+			if value == expectedValue {
+				fulfill()
+			} else {
+				self.addFavourite(value)
+			}
+		}
+	}
+
+	mutating func overrideIsFavourite(_ expectedValue: Int, with resposne: Bool) {
+		let fulfill = expectation(description: "Is Favourite: \(expectedValue)")
+		self.isFavourite = { [self] value in
+			if value == expectedValue {
+				fulfill()
+				return resposne
+			} else {
+				return self.isFavourite(value)
+			}
+		}
+	}
+
+	mutating func overrideSortedFavourites(with resposne: [Int]) {
+		let fulfill = expectation(description: "Sorted Favourites")
+		self.sortedFavourites = { [self] in
+			fulfill()
+			return resposne
+		}
+	}
+}
+#endif
