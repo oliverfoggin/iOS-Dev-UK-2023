@@ -47,6 +47,7 @@ struct CounterView: View {
 					.buttonStyle(.borderedProminent)
 				}
 			}
+			.alert(store: store.scope(state: \.$alert, action: CounterCore.Action.alert))
 			.navigationTitle("Counter")
 		}
 	}

@@ -14,6 +14,7 @@
 		4A8AC3BE2A5968910030B1E5 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 4A8AC3BD2A5968910030B1E5 /* ComposableArchitecture */; };
 		4A8AC3C32A5969C20030B1E5 /* CounterCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8AC3C22A5969C20030B1E5 /* CounterCore.swift */; };
 		4A8AC3C52A596AD80030B1E5 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8AC3C42A596AD80030B1E5 /* CounterView.swift */; };
+		4A8AC3C82A596F070030B1E5 /* NumberFactClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8AC3C72A596F070030B1E5 /* NumberFactClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +36,8 @@
 		4A22F9642A5966CA00B0B3C3 /* iOS_Dev_UK_2023Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_Dev_UK_2023Tests.swift; sourceTree = "<group>"; };
 		4A8AC3C22A5969C20030B1E5 /* CounterCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterCore.swift; sourceTree = "<group>"; };
 		4A8AC3C42A596AD80030B1E5 /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
+		4A8AC3C72A596F070030B1E5 /* NumberFactClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFactClient.swift; sourceTree = "<group>"; };
+		4A8AC3C92A5974A90030B1E5 /* iOS-Dev-UK-2023-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "iOS-Dev-UK-2023-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +80,8 @@
 		4A22F9522A5966C800B0B3C3 /* iOS Dev UK 2023 */ = {
 			isa = PBXGroup;
 			children = (
+				4A8AC3C92A5974A90030B1E5 /* iOS-Dev-UK-2023-Info.plist */,
+				4A8AC3C62A596EF80030B1E5 /* NumberFact */,
 				4A8AC3BF2A59699B0030B1E5 /* Counter */,
 				4A22F9532A5966C800B0B3C3 /* iOS_Dev_UK_2023App.swift */,
 				4A22F9572A5966CA00B0B3C3 /* Assets.xcassets */,
@@ -108,6 +113,14 @@
 				4A8AC3C42A596AD80030B1E5 /* CounterView.swift */,
 			);
 			path = Counter;
+			sourceTree = "<group>";
+		};
+		4A8AC3C62A596EF80030B1E5 /* NumberFact */ = {
+			isa = PBXGroup;
+			children = (
+				4A8AC3C72A596F070030B1E5 /* NumberFactClient.swift */,
+			);
+			path = NumberFact;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,6 +232,7 @@
 				4A8AC3C32A5969C20030B1E5 /* CounterCore.swift in Sources */,
 				4A8AC3C52A596AD80030B1E5 /* CounterView.swift in Sources */,
 				4A22F9542A5966C800B0B3C3 /* iOS_Dev_UK_2023App.swift in Sources */,
+				4A8AC3C82A596F070030B1E5 /* NumberFactClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,8 +380,7 @@
 				DEVELOPMENT_TEAM = 682PGZNNJA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = Counter;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_FILE = "iOS-Dev-UK-2023-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -400,8 +413,7 @@
 				DEVELOPMENT_TEAM = 682PGZNNJA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = Counter;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_FILE = "iOS-Dev-UK-2023-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
