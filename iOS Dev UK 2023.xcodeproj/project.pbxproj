@@ -8,10 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		4A22F9542A5966C800B0B3C3 /* iOS_Dev_UK_2023App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A22F9532A5966C800B0B3C3 /* iOS_Dev_UK_2023App.swift */; };
-		4A22F9562A5966C800B0B3C3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A22F9552A5966C800B0B3C3 /* ContentView.swift */; };
 		4A22F9582A5966CA00B0B3C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A22F9572A5966CA00B0B3C3 /* Assets.xcassets */; };
 		4A22F95B2A5966CA00B0B3C3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A22F95A2A5966CA00B0B3C3 /* Preview Assets.xcassets */; };
 		4A22F9652A5966CA00B0B3C3 /* iOS_Dev_UK_2023Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A22F9642A5966CA00B0B3C3 /* iOS_Dev_UK_2023Tests.swift */; };
+		4A8AC3BE2A5968910030B1E5 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 4A8AC3BD2A5968910030B1E5 /* ComposableArchitecture */; };
+		4A8AC3C32A5969C20030B1E5 /* CounterCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8AC3C22A5969C20030B1E5 /* CounterCore.swift */; };
+		4A8AC3C52A596AD80030B1E5 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8AC3C42A596AD80030B1E5 /* CounterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,11 +29,12 @@
 /* Begin PBXFileReference section */
 		4A22F9502A5966C800B0B3C3 /* iOS Dev UK 2023.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Dev UK 2023.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A22F9532A5966C800B0B3C3 /* iOS_Dev_UK_2023App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_Dev_UK_2023App.swift; sourceTree = "<group>"; };
-		4A22F9552A5966C800B0B3C3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		4A22F9572A5966CA00B0B3C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4A22F95A2A5966CA00B0B3C3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4A22F9602A5966CA00B0B3C3 /* iOS Dev UK 2023Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS Dev UK 2023Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A22F9642A5966CA00B0B3C3 /* iOS_Dev_UK_2023Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_Dev_UK_2023Tests.swift; sourceTree = "<group>"; };
+		4A8AC3C22A5969C20030B1E5 /* CounterCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterCore.swift; sourceTree = "<group>"; };
+		4A8AC3C42A596AD80030B1E5 /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A8AC3BE2A5968910030B1E5 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,8 +77,8 @@
 		4A22F9522A5966C800B0B3C3 /* iOS Dev UK 2023 */ = {
 			isa = PBXGroup;
 			children = (
+				4A8AC3BF2A59699B0030B1E5 /* Counter */,
 				4A22F9532A5966C800B0B3C3 /* iOS_Dev_UK_2023App.swift */,
-				4A22F9552A5966C800B0B3C3 /* ContentView.swift */,
 				4A22F9572A5966CA00B0B3C3 /* Assets.xcassets */,
 				4A22F9592A5966CA00B0B3C3 /* Preview Content */,
 			);
@@ -97,6 +101,15 @@
 			path = "iOS Dev UK 2023Tests";
 			sourceTree = "<group>";
 		};
+		4A8AC3BF2A59699B0030B1E5 /* Counter */ = {
+			isa = PBXGroup;
+			children = (
+				4A8AC3C22A5969C20030B1E5 /* CounterCore.swift */,
+				4A8AC3C42A596AD80030B1E5 /* CounterView.swift */,
+			);
+			path = Counter;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -113,6 +126,9 @@
 			dependencies = (
 			);
 			name = "iOS Dev UK 2023";
+			packageProductDependencies = (
+				4A8AC3BD2A5968910030B1E5 /* ComposableArchitecture */,
+			);
 			productName = "iOS Dev UK 2023";
 			productReference = 4A22F9502A5966C800B0B3C3 /* iOS Dev UK 2023.app */;
 			productType = "com.apple.product-type.application";
@@ -163,6 +179,9 @@
 				Base,
 			);
 			mainGroup = 4A22F9472A5966C800B0B3C3;
+			packageReferences = (
+				4A8AC3BC2A5968910030B1E5 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+			);
 			productRefGroup = 4A22F9512A5966C800B0B3C3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -197,7 +216,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A22F9562A5966C800B0B3C3 /* ContentView.swift in Sources */,
+				4A8AC3C32A5969C20030B1E5 /* CounterCore.swift in Sources */,
+				4A8AC3C52A596AD80030B1E5 /* CounterView.swift in Sources */,
 				4A22F9542A5966C800B0B3C3 /* iOS_Dev_UK_2023App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -346,11 +366,13 @@
 				DEVELOPMENT_TEAM = 682PGZNNJA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Counter;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -358,9 +380,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.oliverfoggin.iOS-Dev-UK-2023";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -375,11 +400,13 @@
 				DEVELOPMENT_TEAM = 682PGZNNJA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Counter;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -387,9 +414,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.oliverfoggin.iOS-Dev-UK-2023";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -464,6 +494,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4A8AC3BC2A5968910030B1E5 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
+			requirement = {
+				branch = prerelease/1.0;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4A8AC3BD2A5968910030B1E5 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4A8AC3BC2A5968910030B1E5 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4A22F9482A5966C800B0B3C3 /* Project object */;
 }
