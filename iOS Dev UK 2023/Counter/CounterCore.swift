@@ -6,6 +6,12 @@ struct CounterCore: Reducer {
 
 		@PresentationState var alert: AlertState<Action.Alert>?
 
+		var isFavrouite: Bool {
+			@Dependency(\.favourites) var favourites
+
+			return favourites.isFavourite(count)
+		}
+
 		init(count: Int = 0) {
 			self.count = count
 		}
@@ -28,6 +34,7 @@ struct CounterCore: Reducer {
 	}
 
 	@Dependency(\.factClient) var factClient
+	@Dependency(\.favourites) var favourites
 
 	var body: some ReducerOf<Self> {
 		Reduce<State, Action> { state, action in
@@ -50,7 +57,11 @@ struct CounterCore: Reducer {
 				}
 
 			case .view(.favouriteButtonTapped):
-				// TODO: Toggle favourite
+				if favourites.isFavourite(state.count) {
+					favourites.removeFavourite(state.count)
+				} else {
+					favourites.addFavourite(state.count)
+				}
 				return .none
 
 			case .factClientResponse(.success(let fact)):

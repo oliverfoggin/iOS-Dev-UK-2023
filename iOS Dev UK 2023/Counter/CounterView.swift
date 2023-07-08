@@ -4,9 +4,11 @@ import ComposableArchitecture
 struct CounterView: View {
 	struct ViewState: Equatable {
 		let count: Int
+		let isFavourite: Bool
 
 		init(state: CounterCore.State) {
 			count = state.count
+			isFavourite = state.isFavrouite
 		}
 	}
 
@@ -19,8 +21,21 @@ struct CounterView: View {
 				observe: ViewState.init
 			) { viewStore in
 				VStack {
-					Text("\(viewStore.count)")
-						.font(.largeTitle)
+					Button {
+						viewStore.send(.favouriteButtonTapped)
+					} label: {
+						Label {
+							Text("\(viewStore.count)")
+						} icon: {
+							Image(systemName: viewStore.isFavourite ? "star.fill" : "star")
+								.resizable()
+								.scaledToFit()
+								.frame(width: 38, height: 38)
+								.foregroundColor(viewStore.isFavourite ? .yellow : .gray)
+						}
+					}
+					.font(.largeTitle)
+					.buttonStyle(.plain)
 
 					HStack {
 						Button {

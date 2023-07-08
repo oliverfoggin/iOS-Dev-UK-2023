@@ -17,6 +17,7 @@
 		4A8AC3CB2A5974F50030B1E5 /* CounterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8AC3CA2A5974F50030B1E5 /* CounterTests.swift */; };
 		4A8AC3D12A5977830030B1E5 /* Expectation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8AC3CD2A59772A0030B1E5 /* Expectation.swift */; };
 		4A8AC3D22A5977880030B1E5 /* XCTCurrentTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8AC3CE2A59772A0030B1E5 /* XCTCurrentTestCase.swift */; };
+		4A8AC3D52A597A0A0030B1E5 /* FavourtiesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8AC3D42A597A0A0030B1E5 /* FavourtiesStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		4A8AC3CA2A5974F50030B1E5 /* CounterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterTests.swift; sourceTree = "<group>"; };
 		4A8AC3CD2A59772A0030B1E5 /* Expectation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expectation.swift; sourceTree = "<group>"; };
 		4A8AC3CE2A59772A0030B1E5 /* XCTCurrentTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTCurrentTestCase.swift; sourceTree = "<group>"; };
+		4A8AC3D42A597A0A0030B1E5 /* FavourtiesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavourtiesStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 		4A22F9522A5966C800B0B3C3 /* iOS Dev UK 2023 */ = {
 			isa = PBXGroup;
 			children = (
+				4A8AC3D32A5979440030B1E5 /* FavouritesStorage */,
 				4A8AC3CC2A59772A0030B1E5 /* XCTestDebugSupport */,
 				4A8AC3C92A5974A90030B1E5 /* iOS-Dev-UK-2023-Info.plist */,
 				4A8AC3C62A596EF80030B1E5 /* NumberFact */,
@@ -135,6 +138,14 @@
 				4A8AC3CE2A59772A0030B1E5 /* XCTCurrentTestCase.swift */,
 			);
 			path = XCTestDebugSupport;
+			sourceTree = "<group>";
+		};
+		4A8AC3D32A5979440030B1E5 /* FavouritesStorage */ = {
+			isa = PBXGroup;
+			children = (
+				4A8AC3D42A597A0A0030B1E5 /* FavourtiesStorage.swift */,
+			);
+			path = FavouritesStorage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,6 +259,7 @@
 				4A8AC3C52A596AD80030B1E5 /* CounterView.swift in Sources */,
 				4A22F9542A5966C800B0B3C3 /* iOS_Dev_UK_2023App.swift in Sources */,
 				4A8AC3C82A596F070030B1E5 /* NumberFactClient.swift in Sources */,
+				4A8AC3D52A597A0A0030B1E5 /* FavourtiesStorage.swift in Sources */,
 				4A8AC3D12A5977830030B1E5 /* Expectation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
