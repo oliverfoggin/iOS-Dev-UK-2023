@@ -10,11 +10,13 @@
 		4A22F9542A5966C800B0B3C3 /* iOS_Dev_UK_2023App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A22F9532A5966C800B0B3C3 /* iOS_Dev_UK_2023App.swift */; };
 		4A22F9582A5966CA00B0B3C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A22F9572A5966CA00B0B3C3 /* Assets.xcassets */; };
 		4A22F95B2A5966CA00B0B3C3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A22F95A2A5966CA00B0B3C3 /* Preview Assets.xcassets */; };
-		4A22F9652A5966CA00B0B3C3 /* iOS_Dev_UK_2023Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A22F9642A5966CA00B0B3C3 /* iOS_Dev_UK_2023Tests.swift */; };
 		4A8AC3BE2A5968910030B1E5 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 4A8AC3BD2A5968910030B1E5 /* ComposableArchitecture */; };
 		4A8AC3C32A5969C20030B1E5 /* CounterCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8AC3C22A5969C20030B1E5 /* CounterCore.swift */; };
 		4A8AC3C52A596AD80030B1E5 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8AC3C42A596AD80030B1E5 /* CounterView.swift */; };
 		4A8AC3C82A596F070030B1E5 /* NumberFactClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8AC3C72A596F070030B1E5 /* NumberFactClient.swift */; };
+		4A8AC3CB2A5974F50030B1E5 /* CounterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8AC3CA2A5974F50030B1E5 /* CounterTests.swift */; };
+		4A8AC3D12A5977830030B1E5 /* Expectation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8AC3CD2A59772A0030B1E5 /* Expectation.swift */; };
+		4A8AC3D22A5977880030B1E5 /* XCTCurrentTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8AC3CE2A59772A0030B1E5 /* XCTCurrentTestCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,11 +35,13 @@
 		4A22F9572A5966CA00B0B3C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4A22F95A2A5966CA00B0B3C3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4A22F9602A5966CA00B0B3C3 /* iOS Dev UK 2023Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS Dev UK 2023Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4A22F9642A5966CA00B0B3C3 /* iOS_Dev_UK_2023Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_Dev_UK_2023Tests.swift; sourceTree = "<group>"; };
 		4A8AC3C22A5969C20030B1E5 /* CounterCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterCore.swift; sourceTree = "<group>"; };
 		4A8AC3C42A596AD80030B1E5 /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 		4A8AC3C72A596F070030B1E5 /* NumberFactClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFactClient.swift; sourceTree = "<group>"; };
 		4A8AC3C92A5974A90030B1E5 /* iOS-Dev-UK-2023-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "iOS-Dev-UK-2023-Info.plist"; sourceTree = SOURCE_ROOT; };
+		4A8AC3CA2A5974F50030B1E5 /* CounterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterTests.swift; sourceTree = "<group>"; };
+		4A8AC3CD2A59772A0030B1E5 /* Expectation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expectation.swift; sourceTree = "<group>"; };
+		4A8AC3CE2A59772A0030B1E5 /* XCTCurrentTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTCurrentTestCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +84,7 @@
 		4A22F9522A5966C800B0B3C3 /* iOS Dev UK 2023 */ = {
 			isa = PBXGroup;
 			children = (
+				4A8AC3CC2A59772A0030B1E5 /* XCTestDebugSupport */,
 				4A8AC3C92A5974A90030B1E5 /* iOS-Dev-UK-2023-Info.plist */,
 				4A8AC3C62A596EF80030B1E5 /* NumberFact */,
 				4A8AC3BF2A59699B0030B1E5 /* Counter */,
@@ -101,7 +106,7 @@
 		4A22F9632A5966CA00B0B3C3 /* iOS Dev UK 2023Tests */ = {
 			isa = PBXGroup;
 			children = (
-				4A22F9642A5966CA00B0B3C3 /* iOS_Dev_UK_2023Tests.swift */,
+				4A8AC3CA2A5974F50030B1E5 /* CounterTests.swift */,
 			);
 			path = "iOS Dev UK 2023Tests";
 			sourceTree = "<group>";
@@ -121,6 +126,15 @@
 				4A8AC3C72A596F070030B1E5 /* NumberFactClient.swift */,
 			);
 			path = NumberFact;
+			sourceTree = "<group>";
+		};
+		4A8AC3CC2A59772A0030B1E5 /* XCTestDebugSupport */ = {
+			isa = PBXGroup;
+			children = (
+				4A8AC3CD2A59772A0030B1E5 /* Expectation.swift */,
+				4A8AC3CE2A59772A0030B1E5 /* XCTCurrentTestCase.swift */,
+			);
+			path = XCTestDebugSupport;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,9 +244,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A8AC3C32A5969C20030B1E5 /* CounterCore.swift in Sources */,
+				4A8AC3D22A5977880030B1E5 /* XCTCurrentTestCase.swift in Sources */,
 				4A8AC3C52A596AD80030B1E5 /* CounterView.swift in Sources */,
 				4A22F9542A5966C800B0B3C3 /* iOS_Dev_UK_2023App.swift in Sources */,
 				4A8AC3C82A596F070030B1E5 /* NumberFactClient.swift in Sources */,
+				4A8AC3D12A5977830030B1E5 /* Expectation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,7 +256,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A22F9652A5966CA00B0B3C3 /* iOS_Dev_UK_2023Tests.swift in Sources */,
+				4A8AC3CB2A5974F50030B1E5 /* CounterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -39,3 +39,19 @@ extension NumberFactClient {
 		)
 	}
 }
+
+
+#if DEBUG
+extension NumberFactClient {
+	mutating func overrideGetFact(for expectedCount: Int, with response: @escaping () async throws -> String) {
+		let fulfill = expectation(description: "Get Fact for \(expectedCount)")
+		self.getFact = { @Sendable [self] count in
+			if count == expectedCount {
+				fulfill()
+				return try await response()
+			}
+			return try await self.getFact(count)
+		}
+	}
+}
+#endif
