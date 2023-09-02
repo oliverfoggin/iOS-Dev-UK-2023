@@ -1,6 +1,6 @@
 import ComposableArchitecture
 
-struct CounterCore: Reducer {
+struct Counter: Reducer {
 	struct State: Equatable {
 		var count: Int
 
@@ -15,7 +15,6 @@ struct CounterCore: Reducer {
 		case view(ViewAction)
 
 		case factClientResponse(TaskResult<String>)
-
 		case alert(PresentationAction<Alert>)
 
 		enum Alert: Equatable {}
@@ -29,28 +28,25 @@ struct CounterCore: Reducer {
 
 	@Dependency(\.factClient) var factClient
 
-	private func updateCount(state: inout State, to count: Int) {
-		state.count = count
-	}
-
 	var body: some ReducerOf<Self> {
 		Reduce<State, Action> { state, action in
 			switch action {
 			case .view(.incrementButtonTapped):
-				updateCount(state: &state, to: state.count + 1)
+				state.count += 1
 				return .none
 
 			case .view(.decrementButtonTapped):
-				updateCount(state: &state, to: state.count - 1)
+				state.count -= 1
 				return .none
 
 			case .view(.numberFactButtonTapped):
 				return .run { [state] send in
-					await send(.factClientResponse(
-						TaskResult {
-							try await factClient.getFact(state.count)
-						}
-					))
+					do {
+						let fact = try await factClient.getFact(state.count)
+						await send(.factClientResponse(.success(fact)))
+					} catch {
+						await send(.factClientResponse(.failure(error)))
+					}
 				}
 
 			case .factClientResponse(.success(let fact)):

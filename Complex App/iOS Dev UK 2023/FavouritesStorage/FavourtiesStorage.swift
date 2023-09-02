@@ -90,7 +90,7 @@ extension Favourites {
 
 	mutating func overrideSortedFavourites(with resposne: [Int]) {
 		let fulfill = expectation(description: "Sorted Favourites")
-		self.sortedFavourites = { [self] in
+		self.sortedFavourites = {
 			fulfill()
 			return resposne
 		}

@@ -2,14 +2,14 @@ import SwiftUI
 import ComposableArchitecture
 
 struct CounterView: View {
-	let store: StoreOf<CounterCore>
+	let store: StoreOf<Counter>
 
 	var body: some View {
 		NavigationStack {
 			WithViewStore(
 				store,
 				observe: \.count,
-				send: CounterCore.Action.view
+				send: Counter.Action.view
 			) { viewStore in
 				VStack {
 					Text("\(viewStore.state)")
@@ -41,12 +41,7 @@ struct CounterView: View {
 				}
 			}
 			.navigationTitle("Counter")
-			.alert(
-			 store: store.scope(
-				 state: \.$alert,
-				 action: CounterCore.Action.alert
-			 )
-		 )
+			.alert(store: store.scope(state: \.$alert, action: Counter.Action.alert))
 		}
 	}
 }
@@ -56,7 +51,7 @@ struct CounterView_Previews: PreviewProvider {
 		CounterView(
 			store: .init(
 				initialState: .init(count: 0),
-				reducer: CounterCore()
+				reducer: Counter()
 			) {
 				$0.factClient.getFact = { value in
 					"\(value) is a number!"
