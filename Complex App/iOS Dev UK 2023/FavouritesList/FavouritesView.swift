@@ -31,13 +31,10 @@ struct FavouritesView_Previews: PreviewProvider {
 	static var previews: some View {
 		NavigationStack {
 			FavouritesView(
-				store: .init(
-					initialState: .init(),
-					reducer: FavouritesCore()
-				) {
-					$0.favourites.sortedFavourites = {
-						[1, 2, 3, 4, 5]
-					}
+				store: .init(initialState: .init()) {
+					FavouritesCore()
+				} withDependencies: {
+					$0.favourites.sortedFavourites = { [1, 2, 3, 4, 5] }
 				}
 			)
 		}

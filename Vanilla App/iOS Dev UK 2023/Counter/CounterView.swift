@@ -68,7 +68,7 @@ struct CounterView_Previews: PreviewProvider {
 		CounterView(
 //			store: .init(
 //				initialState: .init(count: 0),
-//				reducer: Counter()
+//				reducer: { Counter() }
 //			)
 		)
 	}

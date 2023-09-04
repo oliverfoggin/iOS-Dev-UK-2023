@@ -5,10 +5,9 @@ import ComposableArchitecture
 @MainActor
 final class CounterTests: XCTestCase {
 	func testOnAppear() async {
-		let store = TestStore(
-			initialState: .init(count: 42),
-			reducer: CounterCore()
-		) {
+		let store = TestStore(initialState: .init(count: 42)) {
+			CounterCore()
+		} withDependencies: {
 			$0.favourites.overrideIsFavourite(42, with: true)
 		}
 
@@ -18,10 +17,9 @@ final class CounterTests: XCTestCase {
 	}
 
 	func testCounterIncrementDecrement() async {
-		let store = TestStore(
-			initialState: .init(),
-			reducer: CounterCore()
-		) {
+		let store = TestStore(initialState: .init()) {
+			CounterCore()
+		} withDependencies: {
 			$0.favourites.overrideIsFavourite(0, with: false)
 			$0.favourites.overrideIsFavourite(1, with: true)
 		}
@@ -40,10 +38,9 @@ final class CounterTests: XCTestCase {
 	func testNumberFactSuccess() async {
 		let testFact = "42 is a number"
 
-		let store = TestStore(
-			initialState: .init(count: 42),
-			reducer: CounterCore()
-		) {
+		let store = TestStore(initialState: .init(count: 42)) {
+			CounterCore()
+		} withDependencies: {
 			$0.factClient.overrideGetFact(for: 42) { testFact }
 		}
 
@@ -55,10 +52,9 @@ final class CounterTests: XCTestCase {
 	}
 
 	func testNumberFactError() async {
-		let store = TestStore(
-			initialState: .init(count: 42),
-			reducer: CounterCore()
-		) {
+		let store = TestStore(initialState: .init(count: 42)) {
+			CounterCore()
+		} withDependencies: {
 			$0.factClient.overrideGetFact(for: 42) { throw URLError(.badURL) }
 		}
 
@@ -70,10 +66,9 @@ final class CounterTests: XCTestCase {
 	}
 
 	func testTapFavouriteButton() async {
-		let store = TestStore(
-			initialState: .init(count: 42),
-			reducer: CounterCore()
-		) {
+		let store = TestStore(initialState: .init(count: 42)) {
+			CounterCore()
+		} withDependencies: {
 			$0.favourites.expectAddFavourite(42)
 			$0.favourites.overrideIsFavourite(42, with: false)
 		}
@@ -82,10 +77,9 @@ final class CounterTests: XCTestCase {
 	}
 
 	func testTapFavouriteToolbarItem() async {
-		let store = TestStore(
-			initialState: .init(count: 42),
-			reducer: CounterCore()
-		)
+		let store = TestStore(initialState: .init(count: 42)) {
+			CounterCore()
+		}
 
 		await store.send(.view(.favouriteToolBarItemTapped)) {
 			$0.destination = .favourites(.init())
@@ -93,10 +87,9 @@ final class CounterTests: XCTestCase {
 	}
 
 	func testFavouriteDelegateAction() async {
-		let store = TestStore(
-			initialState: .init(count: 42),
-			reducer: CounterCore()
-		) {
+		let store = TestStore(initialState: .init(count: 42)) {
+			CounterCore()
+		} withDependencies: {
 			$0.favourites.overrideIsFavourite(1729, with: true)
 		}
 

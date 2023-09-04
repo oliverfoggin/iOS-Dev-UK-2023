@@ -5,10 +5,9 @@ import ComposableArchitecture
 @MainActor
 final class CounterTests: XCTestCase {
 	func testCounterIncrementDecrement() async {
-		let store = TestStore(
-			initialState: .init(),
-			reducer: Counter()
-		)
+		let store = TestStore(initialState: .init()) {
+			Counter()
+		}
 
 		await store.send(.view(.incrementButtonTapped)) {
 			$0.count = 1
@@ -22,10 +21,9 @@ final class CounterTests: XCTestCase {
 	func testNumberFactSuccess() async {
 		let testFact = "42 is a number"
 
-		let store = TestStore(
-			initialState: .init(count: 42),
-			reducer: Counter()
-		) {
+		let store = TestStore(initialState: .init(count: 42)) {
+			Counter()
+		} withDependencies: {
 			$0.factClient.overrideGetFact(for: 42) { testFact }
 		}
 
@@ -37,10 +35,9 @@ final class CounterTests: XCTestCase {
 	}
 
 	func testNumberFactError() async {
-		let store = TestStore(
-			initialState: .init(count: 42),
-			reducer: Counter()
-		) {
+		let store = TestStore(initialState: .init(count: 42)) {
+			Counter()
+		} withDependencies: {
 			$0.factClient.overrideGetFact(for: 42) { throw URLError(.badURL) }
 		}
 

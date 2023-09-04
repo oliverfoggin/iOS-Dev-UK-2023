@@ -18,7 +18,6 @@
 		4A8AC3D12A5977830030B1E5 /* Expectation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8AC3CD2A59772A0030B1E5 /* Expectation.swift */; };
 		4A8AC3D22A5977880030B1E5 /* XCTCurrentTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8AC3CE2A59772A0030B1E5 /* XCTCurrentTestCase.swift */; };
 		4A8AC3DE2A5B2D080030B1E5 /* Dependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8AC3DD2A5B2D080030B1E5 /* Dependency.swift */; };
-		4A8AC3E02A5B2D220030B1E5 /* LiveClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8AC3DF2A5B2D220030B1E5 /* LiveClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +44,6 @@
 		4A8AC3CD2A59772A0030B1E5 /* Expectation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expectation.swift; sourceTree = "<group>"; };
 		4A8AC3CE2A59772A0030B1E5 /* XCTCurrentTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTCurrentTestCase.swift; sourceTree = "<group>"; };
 		4A8AC3DD2A5B2D080030B1E5 /* Dependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependency.swift; sourceTree = "<group>"; };
-		4A8AC3DF2A5B2D220030B1E5 /* LiveClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,7 +127,6 @@
 			children = (
 				4A8AC3C72A596F070030B1E5 /* NumberFactClient.swift */,
 				4A8AC3DD2A5B2D080030B1E5 /* Dependency.swift */,
-				4A8AC3DF2A5B2D220030B1E5 /* LiveClient.swift */,
 			);
 			path = NumberFact;
 			sourceTree = "<group>";
@@ -251,7 +248,6 @@
 			files = (
 				4A8AC3C32A5969C20030B1E5 /* Counter.swift in Sources */,
 				4A8AC3D22A5977880030B1E5 /* XCTCurrentTestCase.swift in Sources */,
-				4A8AC3E02A5B2D220030B1E5 /* LiveClient.swift in Sources */,
 				4A8AC3C52A596AD80030B1E5 /* CounterView.swift in Sources */,
 				4A22F9542A5966C800B0B3C3 /* iOS_Dev_UK_2023App.swift in Sources */,
 				4A8AC3C82A596F070030B1E5 /* NumberFactClient.swift in Sources */,
@@ -405,6 +401,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "iOS-Dev-UK-2023-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Simple Counter";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -415,7 +412,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.oliverfoggin.iOS-Dev-UK-2023";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.oliverfoggin.iOS-Dev-UK-2023-simple";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -438,6 +435,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "iOS-Dev-UK-2023-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Simple Counter";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -448,7 +446,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.oliverfoggin.iOS-Dev-UK-2023";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.oliverfoggin.iOS-Dev-UK-2023-simple";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

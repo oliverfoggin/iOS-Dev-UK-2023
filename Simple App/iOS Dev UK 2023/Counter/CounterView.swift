@@ -14,6 +14,7 @@ struct CounterView: View {
 				VStack {
 					Text("\(viewStore.state)")
 						.font(.largeTitle)
+						.padding(.top, 50)
 
 					HStack {
 						Button {
@@ -39,6 +40,8 @@ struct CounterView: View {
 					}
 					.buttonStyle(.borderedProminent)
 				}
+
+				Spacer()
 			}
 			.navigationTitle("Counter")
 			.alert(store: store.scope(state: \.$alert, action: Counter.Action.alert))
@@ -49,12 +52,11 @@ struct CounterView: View {
 struct CounterView_Previews: PreviewProvider {
 	static var previews: some View {
 		CounterView(
-			store: .init(
-				initialState: .init(count: 0),
-				reducer: Counter()
-			) {
+			store: .init(initialState: .init(count: 17)) {
+				Counter()
+			} withDependencies: {
 				$0.factClient.getFact = { value in
-					"\(value) is a number!"
+					"\(value) is a good number!"
 				}
 			}
 		)

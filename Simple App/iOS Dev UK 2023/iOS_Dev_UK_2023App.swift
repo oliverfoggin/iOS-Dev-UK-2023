@@ -8,8 +8,10 @@ struct iOS_Dev_UK_2023App: App {
 			CounterView(
 				store: .init(
 					initialState: .init(count: 0),
-					reducer: Counter()
-						._printChanges(.actionLabels)
+					reducer: { 
+						Counter()
+							._printChanges(.actionLabels)
+					}
 				)
 			)
 		}

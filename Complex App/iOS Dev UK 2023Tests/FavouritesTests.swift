@@ -5,10 +5,9 @@ import ComposableArchitecture
 @MainActor
 final class FavouritesTests: XCTestCase {
 	func testOnAppear() async {
-		let store = TestStore(
-			initialState: .init(),
-			reducer: FavouritesCore()
-		) {
+		let store = TestStore(initialState: .init()) {
+			FavouritesCore()
+		} withDependencies: {
 			$0.favourites.overrideSortedFavourites(with: [1, 2, 3])
 		}
 
@@ -18,10 +17,9 @@ final class FavouritesTests: XCTestCase {
 	}
 
 	func testTapOnFavourite() async {
-		let store = TestStore(
-			initialState: .init(),
-			reducer: FavouritesCore()
-		)
+		let store = TestStore(initialState: .init()) {
+			FavouritesCore()
+		}
 
 		await store.send(.view(.favouriteTapped(3)))
 
