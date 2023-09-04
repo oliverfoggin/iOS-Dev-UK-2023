@@ -14,34 +14,21 @@
 		4A8AC3C32A5969C20030B1E5 /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8AC3C22A5969C20030B1E5 /* Counter.swift */; };
 		4A8AC3C52A596AD80030B1E5 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8AC3C42A596AD80030B1E5 /* CounterView.swift */; };
 		4A8AC3C82A596F070030B1E5 /* NumberFactClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8AC3C72A596F070030B1E5 /* NumberFactClient.swift */; };
-		4A8AC3CB2A5974F50030B1E5 /* CounterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8AC3CA2A5974F50030B1E5 /* CounterTests.swift */; };
 		4A8AC3D12A5977830030B1E5 /* Expectation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8AC3CD2A59772A0030B1E5 /* Expectation.swift */; };
 		4A8AC3D22A5977880030B1E5 /* XCTCurrentTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8AC3CE2A59772A0030B1E5 /* XCTCurrentTestCase.swift */; };
 		4A8AC3DE2A5B2D080030B1E5 /* Dependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8AC3DD2A5B2D080030B1E5 /* Dependency.swift */; };
 		4A8AC3E02A5B2D220030B1E5 /* LiveClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8AC3DF2A5B2D220030B1E5 /* LiveClient.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		4A22F9612A5966CA00B0B3C3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A22F9482A5966C800B0B3C3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4A22F94F2A5966C800B0B3C3;
-			remoteInfo = "iOS Dev UK 2023";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		4A22F9502A5966C800B0B3C3 /* iOS Dev UK 2023.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Dev UK 2023.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A22F9532A5966C800B0B3C3 /* iOS_Dev_UK_2023App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_Dev_UK_2023App.swift; sourceTree = "<group>"; };
 		4A22F9572A5966CA00B0B3C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4A22F95A2A5966CA00B0B3C3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		4A22F9602A5966CA00B0B3C3 /* iOS Dev UK 2023Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS Dev UK 2023Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A8AC3C22A5969C20030B1E5 /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
 		4A8AC3C42A596AD80030B1E5 /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 		4A8AC3C72A596F070030B1E5 /* NumberFactClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFactClient.swift; sourceTree = "<group>"; };
 		4A8AC3C92A5974A90030B1E5 /* iOS-Dev-UK-2023-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "iOS-Dev-UK-2023-Info.plist"; sourceTree = SOURCE_ROOT; };
-		4A8AC3CA2A5974F50030B1E5 /* CounterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterTests.swift; sourceTree = "<group>"; };
 		4A8AC3CD2A59772A0030B1E5 /* Expectation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expectation.swift; sourceTree = "<group>"; };
 		4A8AC3CE2A59772A0030B1E5 /* XCTCurrentTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTCurrentTestCase.swift; sourceTree = "<group>"; };
 		4A8AC3DD2A5B2D080030B1E5 /* Dependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependency.swift; sourceTree = "<group>"; };
@@ -57,13 +44,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4A22F95D2A5966CA00B0B3C3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -71,7 +51,6 @@
 			isa = PBXGroup;
 			children = (
 				4A22F9522A5966C800B0B3C3 /* iOS Dev UK 2023 */,
-				4A22F9632A5966CA00B0B3C3 /* iOS Dev UK 2023Tests */,
 				4A22F9512A5966C800B0B3C3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -80,7 +59,6 @@
 			isa = PBXGroup;
 			children = (
 				4A22F9502A5966C800B0B3C3 /* iOS Dev UK 2023.app */,
-				4A22F9602A5966CA00B0B3C3 /* iOS Dev UK 2023Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -105,14 +83,6 @@
 				4A22F95A2A5966CA00B0B3C3 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		4A22F9632A5966CA00B0B3C3 /* iOS Dev UK 2023Tests */ = {
-			isa = PBXGroup;
-			children = (
-				4A8AC3CA2A5974F50030B1E5 /* CounterTests.swift */,
-			);
-			path = "iOS Dev UK 2023Tests";
 			sourceTree = "<group>";
 		};
 		4A8AC3BF2A59699B0030B1E5 /* Counter */ = {
@@ -166,24 +136,6 @@
 			productReference = 4A22F9502A5966C800B0B3C3 /* iOS Dev UK 2023.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4A22F95F2A5966CA00B0B3C3 /* iOS Dev UK 2023Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4A22F9772A5966CA00B0B3C3 /* Build configuration list for PBXNativeTarget "iOS Dev UK 2023Tests" */;
-			buildPhases = (
-				4A22F95C2A5966CA00B0B3C3 /* Sources */,
-				4A22F95D2A5966CA00B0B3C3 /* Frameworks */,
-				4A22F95E2A5966CA00B0B3C3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				4A22F9622A5966CA00B0B3C3 /* PBXTargetDependency */,
-			);
-			name = "iOS Dev UK 2023Tests";
-			productName = "iOS Dev UK 2023Tests";
-			productReference = 4A22F9602A5966CA00B0B3C3 /* iOS Dev UK 2023Tests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -196,10 +148,6 @@
 				TargetAttributes = {
 					4A22F94F2A5966C800B0B3C3 = {
 						CreatedOnToolsVersion = 14.3;
-					};
-					4A22F95F2A5966CA00B0B3C3 = {
-						CreatedOnToolsVersion = 14.3;
-						TestTargetID = 4A22F94F2A5966C800B0B3C3;
 					};
 				};
 			};
@@ -220,7 +168,6 @@
 			projectRoot = "";
 			targets = (
 				4A22F94F2A5966C800B0B3C3 /* iOS Dev UK 2023 */,
-				4A22F95F2A5966CA00B0B3C3 /* iOS Dev UK 2023Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -232,13 +179,6 @@
 			files = (
 				4A22F95B2A5966CA00B0B3C3 /* Preview Assets.xcassets in Resources */,
 				4A22F9582A5966CA00B0B3C3 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4A22F95E2A5966CA00B0B3C3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,23 +200,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4A22F95C2A5966CA00B0B3C3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4A8AC3CB2A5974F50030B1E5 /* CounterTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		4A22F9622A5966CA00B0B3C3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4A22F94F2A5966C800B0B3C3 /* iOS Dev UK 2023 */;
-			targetProxy = 4A22F9612A5966CA00B0B3C3 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		4A22F9722A5966CA00B0B3C3 /* Debug */ = {
@@ -461,46 +385,6 @@
 			};
 			name = Release;
 		};
-		4A22F9782A5966CA00B0B3C3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 682PGZNNJA;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.oliverfoggin.iOS-Dev-UK-2023Tests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iOS Dev UK 2023.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/iOS Dev UK 2023";
-			};
-			name = Debug;
-		};
-		4A22F9792A5966CA00B0B3C3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 682PGZNNJA;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.oliverfoggin.iOS-Dev-UK-2023Tests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iOS Dev UK 2023.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/iOS Dev UK 2023";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -518,15 +402,6 @@
 			buildConfigurations = (
 				4A22F9752A5966CA00B0B3C3 /* Debug */,
 				4A22F9762A5966CA00B0B3C3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4A22F9772A5966CA00B0B3C3 /* Build configuration list for PBXNativeTarget "iOS Dev UK 2023Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4A22F9782A5966CA00B0B3C3 /* Debug */,
-				4A22F9792A5966CA00B0B3C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
