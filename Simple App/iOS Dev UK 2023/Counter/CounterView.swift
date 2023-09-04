@@ -14,7 +14,6 @@ struct CounterView: View {
 				VStack {
 					Text("\(viewStore.state)")
 						.font(.largeTitle)
-						.padding(.top, 50)
 
 					HStack {
 						Button {
@@ -40,8 +39,6 @@ struct CounterView: View {
 					}
 					.buttonStyle(.borderedProminent)
 				}
-
-				Spacer()
 			}
 			.navigationTitle("Counter")
 			.alert(store: store.scope(state: \.$alert, action: Counter.Action.alert))
