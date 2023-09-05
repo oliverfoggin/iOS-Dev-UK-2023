@@ -14,6 +14,7 @@ struct CounterView: View {
 				VStack {
 					Text("\(viewStore.state)")
 						.font(.largeTitle)
+						.padding(.top, 50)
 
 					HStack {
 						Button {
@@ -38,6 +39,8 @@ struct CounterView: View {
 						Text("Get number fact")
 					}
 					.buttonStyle(.borderedProminent)
+
+					Spacer()
 				}
 			}
 			.navigationTitle("Counter")
