@@ -5,7 +5,7 @@ import ComposableArchitecture
 @MainActor
 final class CounterTests: XCTestCase {
 	func testCounterIncrementDecrement() async {
-		let store = TestStore(initialState: .init()) {
+		let store = TestStore(initialState: Counter.State()) {
 			Counter()
 		}
 
@@ -19,18 +19,16 @@ final class CounterTests: XCTestCase {
 	}
 
 	func testNumberFactSuccess() async {
-		let testFact = "42 is a number"
-
-		let store = TestStore(initialState: .init(count: 42)) {
+		let store = TestStore(initialState: Counter.State(count: 42)) {
 			Counter()
-		} withDependencies: {
-			$0.factClient.overrideGetFact(for: 42) { testFact }
+		} withDependencies: { dependencies in
+			dependencies.factClient.getFact = { int in "\(int) is a number" }
 		}
 
 		await store.send(.view(.numberFactButtonTapped))
 
-		await store.receive(.factClientResponse(.success(testFact))) {
-			$0.alert = .init(title: TextState(testFact))
+		await store.receive(.factClientResponse(.success("42 is a number"))) { state in
+			state.alert = .init(title: TextState("42 is a number"))
 		}
 	}
 
