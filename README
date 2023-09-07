@@ -1,0 +1,236 @@
+## iOS Dev UK 2023
+
+### Intro
+Hey, I'm Oliver. I've been writing apps for iPhone since iPhoneOS 3. I love always learning new ways of working with iOS. This conference so far has been great. I've already made changes to projects I'm currently working on from talks I've seen here.
+
+If you want to follow along with my talk today the code is on a public repo on GitHub. github.com/oliverfoggin/iOS-Dev-UK-2023 so you can download that and it should run on both Xcode 14 and 15. You will see three separate projects in it and we will be looking briefly at all of those today.
+
+My talk today is about The Composable Architecture. My aim is to give you enough knowledge to go and start exploring it yourself and writing your own apps using it. And to show you how it can help in organising the high level structure of your app.
+
+Before I start, I'd like to do a quick show of hands.
+
+- Who here has heard of The Composable Architecture?
+- OK cool, now keep your hand up if you have used The Composable Architecture at all?
+- And now keep your hand up if you are using TCA in a production app?
+
+The Composable Architecture (TCA) is an architectural framework. It is developed by the team at pointfree.co. I'm an active member of the community and a fan of the architecture. I'm not a contributor (yet) although I have written my own open source extension to it.
+
+We'll be quickly looking at what software architecture is. Then looking at the structure of TCA and how its component parts work together with a simple app. Then a bit of live coding if everything goes well. And finally rounding off with a more advanced app and information about the community.
+### Software Architecture
+Before we get into the details, I wanted to check my own understanding of what software architecture is. So I did what any sensible person would do and asked ChatGPT. This is what it had to say...
+
+![[TCA-talk-chat-gpt-logo.png]]
+
+>Software architecture is the high-level design framework that defines how various components of a software system interact and work together to achieve its goals. It establishes the fundamental structure, principles, and patterns that guide the organisation, communication, and functionality of the software, ensuring it's robust, maintainable, and scalable over time.
+
+There are many design patterns and architectures that I have used and seen in the past like MVVM, MVC, MVVM+C, MVP, VIPER, and many more. They all go some way to helping with data organisation, or testing, or navigation. But they are still just patterns that need to be implemented. There is no concrete definition for how they should work. Also, a lot of them will solve problems on a feature scale, but still leave it up to you how those features talk to each other.
+
+TCA is different in that it is not just a description of design patterns that can be used in your app but is a concrete, opinionated framework that provides tools for you to use to build your app. The tools it provides helps you write individual views and features but also gives you tools for composing those features together to build your whole app. TCA helps with data organisation, navigation, dependencies, side effects, scalability. testing, and improves developer experience.
+### TCA
+![[TCA-talk-diagram.png]]
+TCA is not a SwiftUI framework but is written with SwiftUI in mind and provides a lot of helpers for data driven views and navigation used in SwiftUI. When you write apps using TCA there are several component parts that work together which we will go through today. The `State`, `Actions`, `Reducer`, and `Effects` all make up the `Store`. The `View` reads data from and sends actions to the `Store`. And `Dependencies` are used to aid wrapping up any of the outside world to make them more usable and more testable. This is the general structure of what makes up a single unit of your app with The Composable Architecture.
+
+These individual units could be small reusable components, separate features in your app, or even the root of your app. These small, simple, units then compose together using tools that TCA provides to create your complex app.
+### Demo app
+Before we start looking into the component parts I wanted to show a very small demo app that I've put together for this talk using TCA so we have some context when looking at the code.
+
+*Start simple app demo...*
+In this "Counter app" you can see that we have a single screen with a plus and minus button that changes the label in the middle of the screen. And we have a "Get Fact" button that will download and display a fact about the current number.
+
+All of this is built using TCA and we'll take a deeper dive now into how it is written. And possibly do a little bit of live coding if everything goes well.
+### State
+We'll start with the `State`. The `State` is the place that your data lives for the feature that you are writing. Normally we only store in state what is needed for the view/feature that it's related to.
+
+![[TCA-talk-state.png]]
+
+First, we're showing and updating a number on the screen. So we need to store that in State which I'll call `count`.
+
+There is a really nice relationship between the view and state.
+- We know that if there is something that we need to display dynamically in the view then we should store it in State.
+- And we know that by just updating the value in State the view will automatically re-render to keep it in sync.
+
+The State also holds on to data required by child state in order to drive navigation from the data. In this example the only navigation we have is to show an alert. We store this in state as an `AlertState`. This is a helper provided by TCA to provide data for a native SwiftUI alert. It give us a way to test that the alert should be shown and that the contents of the alert is correct.
+### Actions
+`Actions` in TCA are usually described as an enum and, among other things, are the only way that the `View` (and therefore the user) can interact with the logic of your app.
+
+![[TCA-talk-action.png]]
+
+You can see here that we have created some nested enums. The first one to look at is the `ViewAction`. This describes everything the view can do. The view has no write access to the state so when something needs to change in state the only option we have is to send an action. As we will see later, this means the view itself is very lightweight.
+
+>*Side Note*
+>The convention is to name actions based on what triggers them rather than what we want them to do. So here we call them `incrementButtonTapped`, `decrementButtonTapped`, and `numberFactButtonTapped`. Rather than `increment`, `decrement`, and `downloadFact`. This makes it easier to reason about wen they occur and means we don't have to change them if, for instance, we decide to add other logic to them. Perhaps we might want to send some analytics when a button is tapped, or store a downloaded fact to a local cache etc...
+
+Other than the view actions we can also use actions to respond to other events in the app. For instance if we want to respond to the result of downloading data from an API. Here we have a `factClientResponse` action which takes a `String`. This string is result of calling our API to download the latest fact.  TaskResult is a helper provided by TCA to allow us to get equatable results that can still contain an error.
+
+We also need to store actions for any child Feature. This gives us the super power that any feature can choose to respond to any action from any of its children or their children. It means you get delegate like actions for free.
+### Reducer
+The `Reducer` in TCA contains the `State` and `Action` and a function that runs to provide the business logic that we need in the app. This reducer function is called every time an action is sent. When it runs we are given the current `state` as an `inout` parameter and the `action` that triggered this call.
+
+Here we can switch on the action, deciding what to do depending on the current action and mutate state if needed.
+
+![[TCA-talk-reducer.png]]
+
+In our counter app, when the `.view(.incrementButtTapped)` is sent we mutate the `state.count` and add one to it. Similarly we subtract one when the `decrementButtonTapped` actions occurs.
+
+We will cover the `numberFactButtonTapped` shortly.
+
+When the `factClientResponse` action is sent we store the fact or the error from the response into the `alert`.
+
+As developers it gives us a very well defined place to write and think about the logic of the app. And does so in a way that allows us to think about one thing at a time.
+
+In this almost every action ends in a `return .none` which I haven't yet explained and the `numberFactButtonTapped` action returns a `.run` something or other. These are `Effects` and this is how TCA allows us to easily communicate with the outside world in an asynchronous and very testable manner.
+### Effects and Dependencies
+I'm going to cover `Effects` and `Dependencies` as one topic as they go very nicely together. But in a TCA app `Dependencies` can be accessed from almost anywhere. They're not necessarily just there for `Effects`.
+
+Every `Reducer` must return one or more `Effects`. These `Effects` are how we escape the synchronous world of the view and the state updates and reach out to and potentially change the outside world.
+
+![[TCA-talk-increment-button-effect.png]]
+
+For the logic of just adding or subtracting 1 to our state we don't need to run any additional logic and so we `return .none`. This isn't `nil` but is an `Effect.none` that tells TCA we don't want any further actions to be sent.
+
+![[TCA-talk-number-fact-button-action.png]]
+
+However, when the user taps the `Get Fact` button we need to download a fact asynchronously and somehow get this back into `State` after it is done. By using a `run` action we are given an asynchronous context in which to do work. And a `send` function that can be used to feed back to the `Redcuer` once we're done.
+
+In this `Effect` we try to get a fact from the `factClient` using the current `state.count` and if that succeeds we pass the fact back in using the `send` function with a `success` response. Otherwise we pass the error in a `failure` response.
+
+Quickly looking back at the actions you can see that this is what triggers the `state.alert` to be written to.
+
+![[TCA-talk-fact-client-response.png]]
+
+The `Dependencies` framework that TCA uses is very much inspired by the `@Environment` property wrapper that is used in SwiftUI. But is not just limited to SwiftUI Views. Dependencies can be accessed from almost anywhere.
+
+In our counter app we access the `factClient` like this.
+
+![[TCA-talk-dependency.png]]
+
+And here is the implementation of the `factClient`. It is a struct with a single property, an async throwing function that uses `URLSession` to get a string from a `URL` based on the `number` passed into it.
+
+This might not look like you have done dependencies in the past but there is a reason for doing it this way that we will see later.
+
+![[TCA-talk-test-number-fact-client.png]]
+
+### View
+I said earlier that TCA is very much written with SwiftUI in mind. I wanted to show you how the view works and though it would be a good opportunity to do a bit of live coding to update an app from vanilla SwiftUI to a TCA version.
+
+*Start live coding*
+1. Show the view in Xcode with the preview.
+	1. You can see that we have the same app that we were looking at before but the view here is written entirely using vanilla SwiftUI.
+	2. It has `@State` for the count, for the fact, and for the boolean to show the fact or not. 
+	3. The increment and decrement buttons update the state directly.
+	4. The get fact button runs an asynchronous task to get the fact.
+	5. The get fact function has to write back into the state and has to update both the `fact` and the `showFact` boolean.
+2. So, lets start updating this to use TCA instead. I already have the Reducer written so lets get started on the view.
+3. First we'll import ComposableArchitecture.
+	1. `import ComposableArchitecture`
+4. Then we need to add a `store` for the view to interact with.
+	1. `let store: Store<Counter.State, Counter.Action>`
+	2. For this there is a nice convenience to write this like `let store: StoreOf<Counter>`.
+5. The main way that the `view` interacts with the `store` is through what's called `viewStore`. The `viewstore` exposes read only state to the view and also provides a way for the view to send actions back to it.
+	1. Note: In iOS17 with the new Swift Observable protocols the `viewStore` will disappear entirely and you will be able to do all of this directly with the `store`.
+	2. We can use a TCA view called `WithViewStore` to get a view store for us to interact with.
+	3. 
+```
+WithViewStore(store) { viewStore in
+```
+6. Here we are observing the `count` of the store. This means that whenever the `count` changes the view will re-render and update the display.
+7. Next we can remove the `@State` properties and use the state instead.
+	1. Now that we don't have the `@State` we need to pass actions into the view store to update the count.
+	2. `viewStore.send(.view(.decrementButtonTapped))`
+	3. `viewStore.send(.view(.incrementButtonTapped))`
+	4. And because we no longer have a fact to write to we need to do the same when the get fact button is tapped.
+	5. `viewStore.send(.view(.numberFactButtonTapped))`
+8. The last thing we need to do in the view is update `alert` to use the TCA `AlertState` that we saw earlier.
+	1. This uses another helper from TCA to help drive navigation from state.
+	2. When using these helpers you will notice that they all use a pretty much identical set of properties whether you're presenting a `sheet`, `alert`, `fullScreenCover`, or event a `navigationDestination`. They are very consistent and all work in the same way.
+	3. `.alert(store: store.scope(state: \.$alert, action: Counter.Action.alert))`
+9. If we build now we'll see a couple of errors. Because we now have a `store` property in the view we need to pass it in when initialising it.
+	1. 
+```
+store: .init(
+initialState: .init(count: 0),
+reducer: Counter()
+)
+```
+10. And finally in the preview.
+
+Now this is building we can see that the view itself hasn't changed much and only has less logic baked into it than before. 
+
+Before we move away from the view I wanted to show a couple of extra benefits that we get from doing this.
+
+1. You'll notice that the preview is still using the live api to fetch number facts from. If we had no internet (on a train, on a plane, in a tunnel, anywhere...) then we'd be stuck without having working previews. But with the `Dependency` system that TCA provides we can very easily fix that.
+	- 
+```
+{
+$0.factClient.getFact = { value in
+"\(value) is a number!"
+}
+}
+```
+2. Here we are overriding the `factClient` dependency to return a string without going anywhere near the actual endpoint that we're using.
+3. And lastly, TCA provides a very easy way for us to inspect what is happening at any and every level of the app.
+	1. By adding this to the `Counter` reducer at the entry point of the app we now get a complete view of every action and every state change throughout the app.
+	2. `._printChanges(.actionLabels)`
+	3. ***Run the app to show the changes in the log***
+
+*End live coding*
+
+With the iOS17 changes coming soon, this view will become even more like vanilla SwiftUI and we'll be able to get rid of the `viewStore` entirely.
+### Scaling up
+I have added a few extras to the Counter app that we saw at the beginning with some more navigation and another dependency to show how things could potentially scale up from where it started.
+
+*Demo advanced app*
+You can see that we now have the ability to favourite a number as we're browse and then we can even see a list of the favourite numbers and tap on them to move straight to that number.
+
+We can also delete them directly from the list and the view always stays in sync.
+
+This is also structured using TCA and has a suite of tests to back it up.
+### Composability (timing dependent)
+
+
+### Round up
+I hope I have showed you enough about working with TCA that you feel you would like to start exploring it yourself and maybe bring it into an app of your own.
+
+![[TCA-talk-diagram.png]]
+We've covered all the major component parts of TCA...
+- State
+	- Holds the data required by the view/feature.
+	- It also holds onto child state in order to aid with driving navigation from data.
+	- Causes the view to re-render when it is updated.
+- Actions
+	- The only way the view can trigger events in your app.
+	- Used to feed results and data back into your reducer.
+	- Holds the child actions to give us the super power of being able to see and respond to any events in our app.
+- Reducer
+	- Contains the State and Actions
+	- Runs the logic of our app when actions are sent
+- Effects
+	- Gives us a context to run asynchronous code and feed asynchronous results back into the Reducer.
+	- Allows us to read from and change the outside world in a concise and testable way.
+- Dependencies
+	- Built in a very similar way to @Environment
+	- Accessible from anywhere.
+	- Designed to make testing easy.
+- View (Store and ViewStore)
+	- Reads from a `viewStore`
+	- Sends actions to the `viewStore`
+	- Very soon, and for iOS17 the `viewStore` will no longer be required.
+- Testing
+	- Exhaustive
+	- Readable
+
+### Developer Experience
+This should hopefully give you a bit of context when you're reading about it in the future. But we only scratched the surface in terms of how these can be used and adapted for your own apps.
+
+It took me a while to shift my thinking into a pattern that works well with TCA. I think I went through about 10 - 15 little side apps that I struggled with while learning it.
+
+However, since clicking with TCA it has really made developing apps easier and quicker and more fun for me and the team I work with. At the same time it has meant we have a much more maintainable, modularised, tested, scalable app.
+
+I'd really recommend thinking about working with it on your next app. Or even introducing it to an existing app that you're working on now. If you want to give it a try you can find it on GitHub @ `swift-composable-architecture` to add it to your projects.
+
+### Community
+There is also a very active community of developers at all levels of knowledge with TCA. From people just starting out to people who have been using it since it's inception.
+
+You can join us on Slack and I would definitely recommend visiting PointFree and watching their recent series # [Tour of the Composable Architecture](https://www.pointfree.co/episodes/ep247-tour-of-the-composable-architecture-1-0-correctness)
+
+Thanks for listening
